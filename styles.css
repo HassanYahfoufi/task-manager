@@ -83,4 +83,11 @@ form button:hover {
 #task-list button:last-of-type:hover {
     background-color: #c82333;
 }
+/* Add any necessary styles for the new category dropdown */
+form select {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 
