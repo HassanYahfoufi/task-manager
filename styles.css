@@ -90,4 +90,11 @@ form select {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+/* Add any necessary styles for the new due date input */
+form input[type="date"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 

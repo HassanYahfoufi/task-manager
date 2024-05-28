@@ -8,20 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         const taskInput = document.querySelector('#task');
         const categoryInput = document.querySelector('#category');
+        const dueDateInput = document.querySelector('#due-date');
         const taskText = taskInput.value.trim();
         const category = categoryInput.value;
+        const dueDate = dueDateInput.value;
 
-        if (taskText !== '') {
-            addTask(taskText, category);
+        if (taskText !== '' && dueDate !== '') {
+            addTask(taskText, category, dueDate);
             taskInput.value = '';
             saveTasks();
         }
     });
 
-    function addTask(taskText, category, completed = false) {
+    function addTask(taskText, category, dueDate, completed = false) {
         const li = document.createElement('li');
         const taskSpan = document.createElement('span');
-        taskSpan.textContent = `${taskText} [${category}]`;
+        taskSpan.textContent = `${taskText} [${category}] (Due: ${dueDate})`;
         if (completed) {
             taskSpan.style.textDecoration = 'line-through';
         }
@@ -50,16 +52,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const tasks = [];
         taskList.querySelectorAll('li').forEach(li => {
             const taskText = li.querySelector('span').textContent.split(' [')[0];
-            const category = li.querySelector('span').textContent.split(' [')[1].slice(0, -1);
+            const category = li.querySelector('span').textContent.split(' [')[1].split('] (Due: ')[0];
+            const dueDate = li.querySelector('span').textContent.split(' (Due: ')[1].slice(0, -1);
             const completed = li.querySelector('span').style.textDecoration === 'line-through';
-            tasks.push({ taskText, category, completed });
+            tasks.push({ taskText, category, dueDate, completed });
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     function loadTasks() {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        tasks.forEach(task => addTask(task.taskText, task.category, task.completed));
+        tasks.forEach(task => addTask(task.taskText, task.category, task.dueDate, task.completed));
     }
 });
 

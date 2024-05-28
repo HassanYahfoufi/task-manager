@@ -38,6 +38,22 @@
     </select>
 
     <button type="submit">Add Task</button>
+    <form>
+        <label for="task">Task:</label>
+        <input type="text" id="task" name="task" required>
+    
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="shopping">Shopping</option>
+        </select>
+    
+        <label for="due-date">Due Date:</label>
+        <input type="date" id="due-date" name="due-date" required>
+    
+        <button type="submit">Add Task</button>
+    </form>    
 </form>
 </html>
 
