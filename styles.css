@@ -37,4 +37,7 @@ form label, form input, form button {
     display: flex;
     justify-content: space-between;
 }
+li span {
+    margin-right: 10px;
+}
 
